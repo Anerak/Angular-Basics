@@ -1,0 +1,7 @@
+.alert {
+  background-color: salmon;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  font-size: 1.5rem;
+}

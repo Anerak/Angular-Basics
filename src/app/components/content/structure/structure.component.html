@@ -1,0 +1,117 @@
+<div class="container">
+  <h2>Structure</h2>
+  <div class="row">
+    <div class="column">
+      <h3>*ngIf</h3>
+      <button class="button-outline" (click)="shown = !shown">
+        {{ shown ? "Hide" : "Show" }} code
+      </button>
+      <pre><code *ngIf="shown; else hiddenCode">'#'+Math.random().toString(16).substring(9, 15);</code></pre>
+      <ng-template #hiddenCode>
+        <code>'#'+Math.random().toString(16).split(".")[0] </code>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <h3>*ngFor</h3>
+      <ul>
+        <li *ngFor="let person of people; index as i">
+          {{ i + 1 }} - {{ person.name }} {{ person.lastName }} -
+          {{ person.position }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <table>
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Name</th>
+            <th>Last name</th>
+            <th>Age</th>
+            <th>Position</th>
+            <th>Is working...</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let person of people; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.lastName }}</td>
+            <td>{{ person.age }}</td>
+            <td>{{ person.position }}</td>
+            <td>{{ person.wfh ? "Remote" : "On site" }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <blockquote>
+        <p>
+          <em *ngIf="countWfh().empty"> There's no one here :( </em>
+          <em *ngIf="countWfh().none && !countWfh().empty">
+            Everyone is working at the office
+          </em>
+          <em *ngIf="countWfh().some && !countWfh().none">
+            {{ countWfh().wfh }} out of {{ countWfh().count }} works from home
+          </em>
+          <em *ngIf="countWfh().all && !countWfh().empty"
+            >Everyone is working from home</em
+          >
+        </p>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column column-50">
+      <input type="text" [(ngModel)]="emptyPerson.name" placeholder="Name" />
+      <input
+        type="text"
+        [(ngModel)]="emptyPerson.lastName"
+        placeholder="Last name"
+      />
+      <input type="number" [(ngModel)]="emptyPerson.age" placeholder="Age" />
+      <input
+        type="url"
+        [(ngModel)]="emptyPerson.avatar"
+        placeholder="https://..."
+      />
+      <label for="cbxWfh">
+        <input id="cbxWfh" type="checkbox" [(ngModel)]="emptyPerson.wfh" />
+        Works from home?
+      </label>
+    </div>
+    <div class="column">
+      <button (click)="savePerson()">{{ isNew ? "Add" : "Save" }}</button>
+    </div>
+  </div>
+
+  <div>
+    <div *ngFor="let person of people; index as i" class="row card">
+      <div class="column column-20">
+        <img [src]="person.avatar" />
+      </div>
+      <div class="column">
+        <p>{{ person.name }} {{ person.lastName }}</p>
+        <p>Age: {{ person.age }}</p>
+        <p>Position: {{ person.position }}</p>
+      </div>
+      <div class="column column-10 f-center">
+        <img
+          src="https://cdn1.iconfinder.com/data/icons/material-core/18/create-512.png"
+          width="64"
+          (click)="editPerson(i)"
+        />
+        <img
+          src="https://cdn0.iconfinder.com/data/icons/google-material-design-3-0/48/ic_delete_48px-512.png"
+          width="64"
+          (click)="deletePerson(i)"
+        />
+      </div>
+    </div>
+  </div>
+</div>

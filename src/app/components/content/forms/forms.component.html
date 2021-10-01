@@ -1,0 +1,253 @@
+<div class="container">
+	<div class="row">
+		<div class="column column-40">
+			<h2>Template Driven</h2>
+			<br />
+			<form
+				#registerForm="ngForm"
+				autocomplete="off"
+				(ngSubmit)="send(registerForm)"
+			>
+				<div class="form-group">
+					<label for="tddName">Name</label>
+					<input
+						#nameControl="ngModel"
+						type="text"
+						id="tddName"
+						name="tddName"
+						[(ngModel)]="fData.name"
+						required
+						minlength="3"
+					/>
+					<blockquote
+						*ngIf="nameControl.invalid && nameControl.dirty"
+					>
+						<p *ngIf="nameControl.errors?.required">
+							Data required
+						</p>
+						<p *ngIf="nameControl.errors?.minlength">
+							The minimum length is 3 characters
+						</p>
+					</blockquote>
+				</div>
+				<div class="form-group">
+					<label for="tddLastName">Last name</label>
+					<input
+						#lastNameControl="ngModel"
+						type="text"
+						id="tddLastName"
+						name="tddLastName"
+						[(ngModel)]="fData.lastName"
+						required
+					/>
+					<blockquote
+						*ngIf="lastNameControl.invalid && lastNameControl.dirty"
+					>
+						<p *ngIf="lastNameControl.errors?.required">
+							Data required
+						</p>
+					</blockquote>
+				</div>
+				<div class="form-group">
+					<label for="tddAge">Age</label>
+					<input
+						#ageControl="ngModel"
+						type="number"
+						id="tddAge"
+						name="tddAge"
+						[(ngModel)]="fData.age"
+						min="5"
+						required
+					/>
+					<blockquote *ngIf="ageControl.invalid && ageControl.dirty">
+						<p *ngIf="ageControl.errors?.required">Data required</p>
+						<p *ngIf="ageControl.errors?.min">
+							Must be older than 5
+						</p>
+					</blockquote>
+				</div>
+				<div class="form-group">
+					<label for="">Email</label>
+					<input
+						#emailControl="ngModel"
+						type="email"
+						id="tddEmail"
+						name="tddEmail"
+						[(ngModel)]="fData.email"
+						required
+						email
+					/>
+					<blockquote
+						*ngIf="emailControl.invalid && emailControl.dirty"
+					>
+						<p *ngIf="emailControl.errors?.required">
+							Data required
+						</p>
+						<p *ngIf="emailControl.errors?.email">Invalid value</p>
+					</blockquote>
+				</div>
+				<div class="form-group">
+					<label for="">Password</label>
+					<input
+						#passwordControl="ngModel"
+						type="password"
+						id="tddPassword"
+						name="tddPassword"
+						[(ngModel)]="fData.password"
+						minlength="3"
+					/>
+					<blockquote
+						*ngIf="passwordControl.invalid && passwordControl.dirty"
+					>
+						<p *ngIf="passwordControl.errors?.required">
+							This field is required
+						</p>
+						<p *ngIf="passwordControl.errors?.minlength">
+							Value must be at least 3 characters
+						</p>
+					</blockquote>
+				</div>
+
+				<button class="button" [disabled]="registerForm.invalid">
+					Send
+				</button>
+			</form>
+		</div>
+
+		<div class="column column-40">
+			<h2>Reactive Forms</h2>
+			<br />
+			<form [formGroup]="f" autocomplete="off">
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input
+						type="text"
+						id="name"
+						name="name"
+						formControlName="name"
+					/>
+					<blockquote
+						*ngIf="f.controls.name.errors && f.controls.name.dirty"
+					>
+						<p *ngIf="f.controls.name.errors.required">
+							Data required
+						</p>
+						<p *ngIf="f.controls.name.errors?.minlength">
+							The minimum length is
+							{{
+								f.controls.name.errors?.minlength.requiredLength
+							}}
+							characters
+						</p>
+						<p *ngIf="f.controls.name.errors?.maxlength">
+							The maximum length is
+							{{
+								f.controls.name.errors?.maxlength.requiredLength
+							}}
+							characters
+						</p>
+						<p *ngIf="f.controls.name.errors?.hasSpaces">
+							{{ f.controls.name.errors?.hasSpaces }}
+						</p>
+					</blockquote>
+				</div>
+				<div class="form-group">
+					<label for="lastName">Last name</label>
+					<input
+						type="text"
+						id="lastName"
+						name="lastName"
+						formControlName="lastName"
+					/>
+					<blockquote
+						*ngIf="
+							f.controls.lastName.errors &&
+							f.controls.lastName?.dirty
+						"
+					>
+						<p *ngIf="f.controls.lastName.errors?.required">
+							Data required
+						</p>
+					</blockquote>
+				</div>
+				<div class="form-group">
+					<label for="age">Age</label>
+					<input
+						type="number"
+						id="age"
+						name="age"
+						formControlName="age"
+					/>
+					<!--<blockquote *ngIf="ageControl.invalid && ageControl.dirty">
+						<p *ngIf="ageControl.errors?.required">Data required</p>
+						<p *ngIf="ageControl.errors?.min">
+							Must be older than 5
+						</p>
+					</blockquote>-->
+				</div>
+				<div formGroupName="contact" class="form-group">
+					<label for="email">Email</label>
+					<input
+						type="email"
+						id="email"
+						name="email"
+						formControlName="email"
+					/>
+					<!--<blockquote
+						*ngIf="emailControl.invalid && emailControl.dirty"
+					>
+						<p *ngIf="emailControl.errors?.required">
+							Data required
+						</p>
+						<p *ngIf="emailControl.errors?.email">Invalid value</p>
+					</blockquote>-->
+				</div>
+				<div formGroupName="contact" class="form-group">
+					<label for="phone">Phone</label>
+					<input
+						type="tel"
+						id="phone"
+						name="phone"
+						formControlName="phone"
+					/>
+					<!--<blockquote
+						*ngIf="emailControl.invalid && emailControl.dirty"
+					>
+						<p *ngIf="emailControl.errors?.required">
+							Data required
+						</p>
+						<p *ngIf="emailControl.errors?.email">Invalid value</p>
+					</blockquote>-->
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input
+						type="password"
+						id="password"
+						name="password"
+						formControlName="password"
+					/>
+					<!--<blockquote
+						*ngIf="passwordControl.invalid && passwordControl.dirty"
+					>
+						<p *ngIf="passwordControl.errors?.required">
+							This field is required
+						</p>
+						<p *ngIf="passwordControl.errors?.minlength">
+							Value must be at least 3 characters
+						</p>
+					</blockquote>-->
+				</div>
+
+				<button
+					class="button"
+					[disabled]="f.invalid"
+					(click)="sendRF()"
+				>
+					Send
+				</button>
+				<pre><code>{{f.value | json}}</code></pre>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h2>Attributes</h2>
+			<h3 [ngStyle]="getStateStyle(currStateStyle)">
+				This is a {{ currStateStyle ? "white" : "red" }} text when the
+				state is
+				{{ currStateStyle ? "true" : "false" }}
+			</h3>
+			<button class="button" (click)="currStateStyle = !currStateStyle">
+				Switch
+			</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<h3 [ngClass]="getStateClass(currStateClass)">
+				This will be {{ currStateClass ? "honeydew" : "hotpink" }} when
+				the state is {{ currStateClass ? "true" : "false" }}
+			</h3>
+			<button class="button" (click)="currStateClass = !currStateClass">
+				Switch
+			</button>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col">
+			<h3>Custom Attributes</h3>
+			<p appHighlight="red">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
+				tempora natus distinctio voluptate enim soluta vero commodi aut
+				ullam harum, molestias a reiciendis. Sed harum eligendi quod
+				accusantium obcaecati reiciendis?
+			</p>
+		</div>
+	</div>
+</div>
