@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,14 @@ import { StructureComponent } from './components/content/structure/structure.com
 import { AttributesComponent } from './components/content/attributes/attributes.component';
 import { HighlightDirective } from './directives/highlight.directive';
 import { FormsComponent } from './components/content/forms/forms.component';
+import { CustomersComponent } from './components/content/customers/customers.component';
+import {
+	CustomersService,
+	CustomersServiceUseClass,
+	CustomersServiceUseExisting,
+	fCustomersServiceUseFactory,
+} from './services/customers.service';
+import { UsersComponent } from './components/content/users/users.component';
 
 @NgModule({
 	declarations: [
@@ -25,14 +34,41 @@ import { FormsComponent } from './components/content/forms/forms.component';
 		AttributesComponent,
 		HighlightDirective,
 		FormsComponent,
+		CustomersComponent,
+		UsersComponent,
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		FormsModule,
 		ReactiveFormsModule,
+		HttpClientModule,
 	],
-	providers: [],
+	providers: [
+		{ provide: CustomersService, useClass: CustomersService },
+		// Use Class
+		// { provide: CustomersService, useClass: CustomersServiceUseClass },
+		// Use Existing
+		//{ provide: CustomersService, useExisting: CustomersServiceUseExisting },
+		// Use Factory
+		//{ provide: CustomersService, useFactory: fCustomersServiceUseFactory },
+		// Use Value
+		/*{
+			provide: CustomersService,
+			useValue: {
+				customers: ['A', 'B', 'C'],
+				getCustomers(): Array<String> {
+					return this.customers;
+				},
+				addCustomer(customer: String): void {
+					this.customers.unshift(customer);
+				},
+				deleteCustomer(): void {
+					this.customers.shift();
+				},
+			},
+		},*/
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
