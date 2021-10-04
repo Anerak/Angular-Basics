@@ -1,0 +1,93 @@
+table {
+	width: 100%;
+}
+
+/* ------- */
+/*   img   */
+/* ------- */
+img {
+	position: relative;
+	top: 3px;
+	border-radius: 5px;
+	width: 50px;
+	height: 50px;
+	display: block;
+}
+
+.img-fila1 {
+	margin-top: -13px;
+	position: relative;
+	top: 6px;
+	display: block;
+}
+
+/* ------- */
+/*  input  */
+/* ------- */
+input {
+	width: 90px;
+}
+
+.input-send {
+	margin-top: 15px;
+	position: relative;
+	bottom: 10px;
+}
+
+.input-id {
+	width: 20px;
+	outline: none;
+	font-size: 1.3rem;
+	color: red;
+}
+
+.input-hidden {
+	visibility: hidden;
+}
+
+.input-edit {
+	margin-top: 15px;
+	border: none;
+	position: relative;
+	bottom: 5px;
+}
+
+.input-no-edit {
+	margin-top: 15px;
+	border: none;
+	position: relative;
+	bottom: 5px;
+	border: none;
+	outline: none;
+}
+
+/* ------- */
+/* button  */
+/* ------- */
+button {
+	margin-right: 5px;
+}
+
+.boton-send {
+	margin-top: 5px;
+	position: relative;
+	bottom: -10px;
+}
+
+.boton-edit {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+/* ------- */
+/* divider */
+/* ------- */
+.divider-send {
+	margin-top: 12px;
+	margin-bottom: 24px;
+}
+
+.divider-edit {
+	margin-top: 10px;
+	margin-bottom: 16px;
+}

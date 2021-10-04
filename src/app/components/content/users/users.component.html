@@ -1,8 +1,39 @@
 <div class="container">
 	<h3>Users</h3>
 	<div class="row">
-		<blockquote>
-			<p *ngFor="let user of users; index as i">User {{ i + 1 }}</p>
-		</blockquote>
+		<button class="button" (click)="getUsers()">GET</button>&nbsp;
+		<button class="button" (click)="saveUser()">POST</button>
+	</div>
+	<div class="row">
+		<div class="column">
+			<div *ngFor="let user of users; index as i" class="row card">
+				<div class="column column-20 f-center">
+					<img [src]="user.avatar" />
+				</div>
+				<div class="column">
+					<p>
+						{{ user.name }} |
+						{{ user.createdAt | date: "dd/MM/yyyy HH:mm:ss" }}
+					</p>
+					<p>Address: {{ user.address }} | {{ user.location }}</p>
+					<p>Comments: {{ user.comments }}</p>
+					<blockquote>
+						<p>{{ user.description }}</p>
+					</blockquote>
+				</div>
+				<div class="column column-10 f-center">
+					<img
+						src="https://cdn1.iconfinder.com/data/icons/material-core/18/create-512.png"
+						width="64"
+						(click)="updateUser(user.id)"
+					/>
+					<img
+						src="https://cdn0.iconfinder.com/data/icons/google-material-design-3-0/48/ic_delete_48px-512.png"
+						width="64"
+						(click)="deleteUser(user.id)"
+					/>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

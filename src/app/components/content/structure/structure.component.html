@@ -1,117 +1,385 @@
 <div class="container">
-  <h2>Structure</h2>
-  <div class="row">
-    <div class="column">
-      <h3>*ngIf</h3>
-      <button class="button-outline" (click)="shown = !shown">
-        {{ shown ? "Hide" : "Show" }} code
-      </button>
-      <pre><code *ngIf="shown; else hiddenCode">'#'+Math.random().toString(16).substring(9, 15);</code></pre>
-      <ng-template #hiddenCode>
-        <code>'#'+Math.random().toString(16).split(".")[0] </code>
-      </ng-template>
-    </div>
-  </div>
+	<h2>Structure</h2>
+	<div class="row">
+		<div class="column">
+			<h3>*ngIf</h3>
+			<button class="button-outline" (click)="shown = !shown">
+				{{ shown ? "Hide" : "Show" }} code
+			</button>
+			<pre><code *ngIf="shown; else hiddenCode">'#'+Math.random().toString(16).substring(9, 15);</code></pre>
+			<ng-template #hiddenCode>
+				<code>'#'+Math.random().toString(16).split(".")[0] </code>
+			</ng-template>
+		</div>
+	</div>
 
-  <div class="row">
-    <div class="column">
-      <h3>*ngFor</h3>
-      <ul>
-        <li *ngFor="let person of people; index as i">
-          {{ i + 1 }} - {{ person.name }} {{ person.lastName }} -
-          {{ person.position }}
-        </li>
-      </ul>
-    </div>
-  </div>
+	<div class="row">
+		<div class="column">
+			<h3>*ngFor</h3>
+			<ul>
+				<li *ngFor="let person of people; index as i">
+					{{ i + 1 }} - {{ person.name }} {{ person.lastName }} -
+					{{ person.position }}
+				</li>
+			</ul>
+		</div>
+	</div>
 
-  <div class="row">
-    <div class="column">
-      <table>
-        <thead>
-          <tr>
-            <th>N°</th>
-            <th>Name</th>
-            <th>Last name</th>
-            <th>Age</th>
-            <th>Position</th>
-            <th>Is working...</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let person of people; index as i">
-            <td>{{ i + 1 }}</td>
-            <td>{{ person.name }}</td>
-            <td>{{ person.lastName }}</td>
-            <td>{{ person.age }}</td>
-            <td>{{ person.position }}</td>
-            <td>{{ person.wfh ? "Remote" : "On site" }}</td>
-          </tr>
-        </tbody>
-      </table>
-      <blockquote>
-        <p>
-          <em *ngIf="countWfh().empty"> There's no one here :( </em>
-          <em *ngIf="countWfh().none && !countWfh().empty">
-            Everyone is working at the office
-          </em>
-          <em *ngIf="countWfh().some && !countWfh().none">
-            {{ countWfh().wfh }} out of {{ countWfh().count }} works from home
-          </em>
-          <em *ngIf="countWfh().all && !countWfh().empty"
-            >Everyone is working from home</em
-          >
-        </p>
-      </blockquote>
-    </div>
-  </div>
+	<div class="row">
+		<div class="column">
+			<table>
+				<thead>
+					<tr>
+						<th>N°</th>
+						<th>Name</th>
+						<th>Last name</th>
+						<th>Age</th>
+						<th>Position</th>
+						<th>Is working...</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let person of people; index as i">
+						<td>{{ i + 1 }}</td>
+						<td>{{ person.name }}</td>
+						<td>{{ person.lastName }}</td>
+						<td>{{ person.age }}</td>
+						<td>{{ person.position }}</td>
+						<td>{{ person.wfh ? "Remote" : "On site" }}</td>
+					</tr>
+				</tbody>
+			</table>
+			<blockquote>
+				<p>
+					<em *ngIf="countWfh().empty"> There's no one here :( </em>
+					<em *ngIf="countWfh().none && !countWfh().empty">
+						Everyone is working at the office
+					</em>
+					<em *ngIf="countWfh().some && !countWfh().none">
+						{{ countWfh().wfh }} out of {{ countWfh().count }} works
+						from home
+					</em>
+					<em *ngIf="countWfh().all && !countWfh().empty"
+						>Everyone is working from home</em
+					>
+				</p>
+			</blockquote>
+		</div>
+	</div>
 
-  <div class="row">
-    <div class="column column-50">
-      <input type="text" [(ngModel)]="emptyPerson.name" placeholder="Name" />
-      <input
-        type="text"
-        [(ngModel)]="emptyPerson.lastName"
-        placeholder="Last name"
-      />
-      <input type="number" [(ngModel)]="emptyPerson.age" placeholder="Age" />
-      <input
-        type="url"
-        [(ngModel)]="emptyPerson.avatar"
-        placeholder="https://..."
-      />
-      <label for="cbxWfh">
-        <input id="cbxWfh" type="checkbox" [(ngModel)]="emptyPerson.wfh" />
-        Works from home?
-      </label>
-    </div>
-    <div class="column">
-      <button (click)="savePerson()">{{ isNew ? "Add" : "Save" }}</button>
-    </div>
-  </div>
+	<div class="row">
+		<div class="column column-50">
+			<input
+				type="text"
+				[(ngModel)]="emptyPerson.name"
+				placeholder="Name"
+			/>
+			<input
+				type="text"
+				[(ngModel)]="emptyPerson.lastName"
+				placeholder="Last name"
+			/>
+			<input
+				type="number"
+				[(ngModel)]="emptyPerson.age"
+				placeholder="Age"
+			/>
+			<input
+				type="url"
+				[(ngModel)]="emptyPerson.avatar"
+				placeholder="https://..."
+			/>
+			<label for="cbxWfh">
+				<input
+					id="cbxWfh"
+					type="checkbox"
+					[(ngModel)]="emptyPerson.wfh"
+				/>
+				Works from home?
+			</label>
+		</div>
+		<div class="column">
+			<button (click)="savePerson()">{{ isNew ? "Add" : "Save" }}</button>
+		</div>
+	</div>
 
-  <div>
-    <div *ngFor="let person of people; index as i" class="row card">
-      <div class="column column-20">
-        <img [src]="person.avatar" />
-      </div>
-      <div class="column">
-        <p>{{ person.name }} {{ person.lastName }}</p>
-        <p>Age: {{ person.age }}</p>
-        <p>Position: {{ person.position }}</p>
-      </div>
-      <div class="column column-10 f-center">
-        <img
-          src="https://cdn1.iconfinder.com/data/icons/material-core/18/create-512.png"
-          width="64"
-          (click)="editPerson(i)"
-        />
-        <img
-          src="https://cdn0.iconfinder.com/data/icons/google-material-design-3-0/48/ic_delete_48px-512.png"
-          width="64"
-          (click)="deletePerson(i)"
-        />
-      </div>
-    </div>
-  </div>
+	<div>
+		<div *ngFor="let person of people; index as i" class="row card">
+			<div class="column column-20">
+				<img [src]="person.avatar" />
+			</div>
+			<div class="column">
+				<p>{{ person.name }} {{ person.lastName }}</p>
+				<p>Age: {{ person.age }}</p>
+				<p>Position: {{ person.position }}</p>
+			</div>
+			<div class="column column-10 f-center">
+				<img
+					src="https://cdn1.iconfinder.com/data/icons/material-core/18/create-512.png"
+					width="64"
+					(click)="editPerson(i)"
+				/>
+				<img
+					src="https://cdn0.iconfinder.com/data/icons/google-material-design-3-0/48/ic_delete_48px-512.png"
+					width="64"
+					(click)="deletePerson(i)"
+				/>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="column matdemo">
+			<h3>ngSwitch</h3>
+
+			<input type="text" [(ngModel)]="selector" />
+
+			<div [ngSwitch]="selector">
+				<div *ngSwitchCase="1" class="mat-elevation-z8">
+					<mat-slider
+						min="1"
+						max="100"
+						step="1"
+						value="50"
+					></mat-slider>
+				</div>
+
+				<div *ngSwitchCase="2">
+					<section>
+						<div class="example-label">Basic</div>
+						<div class="example-button-row">
+							<button mat-button>Basic</button>
+							<button mat-button color="primary">Primary</button>
+							<button mat-button color="accent">Accent</button>
+							<button mat-button color="warn">Warn</button>
+							<button mat-button disabled>Disabled</button>
+							<a
+								mat-button
+								href="https://www.google.com/"
+								target="_blank"
+								>Link</a
+							>
+						</div>
+					</section>
+
+					<mat-divider></mat-divider>
+					<section>
+						<div class="example-label">Raised</div>
+						<div class="example-button-row">
+							<button mat-raised-button>Basic</button>
+							<button mat-raised-button color="primary">
+								Primary
+							</button>
+							<button mat-raised-button color="accent">
+								Accent
+							</button>
+							<button mat-raised-button color="warn">Warn</button>
+							<button mat-raised-button disabled>Disabled</button>
+							<a
+								mat-raised-button
+								href="https://www.google.com/"
+								target="_blank"
+								>Link</a
+							>
+						</div>
+					</section>
+					<mat-divider></mat-divider>
+					<section>
+						<div class="example-label">Stroked</div>
+						<div class="example-button-row">
+							<button mat-stroked-button>Basic</button>
+							<button mat-stroked-button color="primary">
+								Primary
+							</button>
+							<button mat-stroked-button color="accent">
+								Accent
+							</button>
+							<button mat-stroked-button color="warn">
+								Warn
+							</button>
+							<button mat-stroked-button disabled>
+								Disabled
+							</button>
+							<a
+								mat-stroked-button
+								href="https://www.google.com/"
+								target="_blank"
+								>Link</a
+							>
+						</div>
+					</section>
+					<mat-divider></mat-divider>
+					<section>
+						<div class="example-label">Flat</div>
+						<div class="example-button-row">
+							<button mat-flat-button>Basic</button>
+							<button mat-flat-button color="primary">
+								Primary
+							</button>
+							<button mat-flat-button color="accent">
+								Accent
+							</button>
+							<button mat-flat-button color="warn">Warn</button>
+							<button mat-flat-button disabled>Disabled</button>
+							<a
+								mat-flat-button
+								href="https://www.google.com/"
+								target="_blank"
+								>Link</a
+							>
+						</div>
+					</section>
+				</div>
+				<mat-divider></mat-divider>
+				<div *ngSwitchCase="3">
+					<section>
+						<div class="example-label">Icon</div>
+						<div class="example-button-row">
+							<div class="example-flex-container">
+								<button
+									mat-icon-button
+									aria-label="Example icon button with a vertical three dot icon"
+								>
+									<mat-icon>more_vert</mat-icon>
+								</button>
+								<button
+									mat-icon-button
+									color="primary"
+									aria-label="Example icon button with a home icon"
+								>
+									<mat-icon>home</mat-icon>
+								</button>
+								<button
+									mat-icon-button
+									color="accent"
+									aria-label="Example icon button with a menu icon"
+								>
+									<mat-icon>menu</mat-icon>
+								</button>
+								<button
+									mat-icon-button
+									color="warn"
+									aria-label="Example icon button with a heart icon"
+								>
+									<mat-icon>favorite</mat-icon>
+								</button>
+								<button
+									mat-icon-button
+									disabled
+									aria-label="Example icon button with a open in new tab icon"
+								>
+									<mat-icon>open_in_new</mat-icon>
+								</button>
+							</div>
+						</div>
+					</section>
+				</div>
+				<mat-divider></mat-divider>
+				<div *ngSwitchCase="4">
+					<section>
+						<div class="example-label">FAB</div>
+						<div class="example-button-row">
+							<div class="example-flex-container">
+								<div class="example-button-container">
+									<button
+										mat-fab
+										color="primary"
+										aria-label="Example icon button with a delete icon"
+									>
+										<mat-icon>delete</mat-icon>
+									</button>
+								</div>
+								<div class="example-button-container">
+									<button
+										mat-fab
+										color="accent"
+										aria-label="Example icon button with a bookmark icon"
+									>
+										<mat-icon>bookmark</mat-icon>
+									</button>
+								</div>
+								<div class="example-button-container">
+									<button
+										mat-fab
+										color="warn"
+										aria-label="Example icon button with a home icon"
+									>
+										<mat-icon>home</mat-icon>
+									</button>
+								</div>
+								<div class="example-button-container">
+									<button
+										mat-fab
+										disabled
+										aria-label="Example icon button with a heart icon"
+									>
+										<mat-icon>favorite</mat-icon>
+									</button>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+				<mat-divider></mat-divider>
+				<div *ngSwitchDefault>
+					<section>
+						<div class="example-label">Mini FAB</div>
+						<div class="example-button-row">
+							<div class="example-flex-container">
+								<div class="example-button-container">
+									<button
+										mat-mini-fab
+										color="primary"
+										aria-label="Example icon button with a menu icon"
+									>
+										<mat-icon>menu</mat-icon>
+									</button>
+								</div>
+								<div class="example-button-container">
+									<button
+										mat-mini-fab
+										color="accent"
+										aria-label="Example icon button with a plus one icon"
+									>
+										<mat-icon>plus_one</mat-icon>
+									</button>
+								</div>
+								<div class="example-button-container">
+									<button
+										mat-mini-fab
+										color="warn"
+										aria-label="Example icon button with a filter list icon"
+									>
+										<mat-icon>filter_list</mat-icon>
+									</button>
+								</div>
+								<div class="example-button-container">
+									<button
+										mat-mini-fab
+										disabled
+										aria-label="Example icon button with a home icon"
+									>
+										<mat-icon>home</mat-icon>
+									</button>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="column">
+			<h3>Pipes</h3>
+			<h4>Native</h4>
+			<ul>
+				<li>uppercase: {{ "Hello" | uppercase }}</li>
+				<li>date: {{ date | date: "dd/MM/yyyy HH:mm:ss" }}</li>
+				<li>currency: {{ 12345 | currency }}</li>
+			</ul>
+			<h4>Custom</h4>
+			<li>addsymbol: {{ 12345 | addsymbol: "¤" }}</li>
+		</div>
+	</div>
 </div>

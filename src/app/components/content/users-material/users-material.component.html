@@ -1,0 +1,270 @@
+<div class="container">
+	<div class="row">
+		<h3>Users Material</h3>
+	</div>
+	<div class="row">
+		<h3 *ngIf="loading">Loading users...</h3>
+	</div>
+</div>
+<div
+	[ngStyle]="{ display: loading ? 'none' : 'block' }"
+	class="mat-elevation-z8"
+>
+	<table mat-table [dataSource]="users" matSort>
+		<ng-container matColumnDef="id">
+			<th mat-header-cell *matHeaderCellDef mat-sort-header>#ID</th>
+			<td mat-cell *matCellDef="let user; index as i">
+				<div *ngIf="!i">
+					<input
+						type="text"
+						class="input-send input-id input-hidden"
+					/>
+					<mat-divider class="divider-edit"></mat-divider>
+				</div>
+				<!--<input
+					type="text"
+					class="input-edit input-id"
+					[value]="user.id"
+					readonly
+					style="color: red"
+				/>-->
+				{{ user.id }}
+			</td>
+		</ng-container>
+
+		<ng-container matColumnDef="name">
+			<th mat-header-cell *matHeaderCellDef mat-sort-header>
+				<span>Name</span>
+			</th>
+			<td mat-cell *matCellDef="let user; index as i">
+				<div *ngIf="!i">
+					<input
+						type="text"
+						[(ngModel)]="newUser.name"
+						class="input-send"
+					/>
+					<mat-divider class="divider-edit"></mat-divider>
+				</div>
+				<input
+					type="text"
+					*ngIf="user.show"
+					readonly
+					class="input-no-edit"
+					[(ngModel)]="user.name"
+				/>
+				<input
+					type="text"
+					*ngIf="!user.show"
+					class="input-edit"
+					[(ngModel)]="user.name"
+				/>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="address">
+			<th mat-header-cell *matHeaderCellDef mat-sort-header>
+				<span>Address</span>
+			</th>
+			<td mat-cell *matCellDef="let user; index as i">
+				<div *ngIf="!i">
+					<input
+						type="text"
+						[(ngModel)]="newUser.address"
+						class="input-send"
+					/>
+					<mat-divider class="divider-edit"></mat-divider>
+				</div>
+				<input
+					type="text"
+					*ngIf="user.show"
+					readonly
+					class="input-no-edit"
+					[(ngModel)]="user.address"
+				/>
+				<input
+					type="text"
+					*ngIf="!user.show"
+					class="input-edit"
+					[(ngModel)]="user.address"
+				/>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="location">
+			<th mat-header-cell *matHeaderCellDef mat-sort-header>
+				<span>Location</span>
+			</th>
+			<td mat-cell *matCellDef="let user; index as i">
+				<div *ngIf="!i">
+					<input
+						type="text"
+						[(ngModel)]="newUser.location"
+						class="input-send"
+					/>
+					<mat-divider class="divider-edit"></mat-divider>
+				</div>
+				<input
+					type="text"
+					*ngIf="user.show"
+					readonly
+					class="input-no-edit"
+					[(ngModel)]="user.location"
+				/>
+				<input
+					type="text"
+					*ngIf="!user.show"
+					class="input-edit"
+					[(ngModel)]="user.location"
+				/>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="description">
+			<th mat-header-cell *matHeaderCellDef mat-sort-header>
+				<span>Description</span>
+			</th>
+			<td mat-cell *matCellDef="let user; index as i">
+				<div *ngIf="!i">
+					<input
+						type="text"
+						[(ngModel)]="newUser.description"
+						class="input-send"
+					/>
+					<mat-divider class="divider-edit"></mat-divider>
+				</div>
+				<input
+					type="text"
+					*ngIf="user.show"
+					readonly
+					class="input-no-edit"
+					[(ngModel)]="user.description"
+				/>
+				<input
+					type="text"
+					*ngIf="!user.show"
+					class="input-edit"
+					[(ngModel)]="user.description"
+				/>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="comments">
+			<th mat-header-cell *matHeaderCellDef mat-sort-header>
+				<span>Comments</span>
+			</th>
+			<td mat-cell *matCellDef="let user; index as i">
+				<div *ngIf="!i">
+					<input
+						type="text"
+						[(ngModel)]="newUser.comments"
+						class="input-send"
+					/>
+					<mat-divider class="divider-edit"></mat-divider>
+				</div>
+				<input
+					type="text"
+					*ngIf="user.show"
+					readonly
+					class="input-no-edit"
+					[(ngModel)]="user.comments"
+				/>
+				<input
+					type="text"
+					*ngIf="!user.show"
+					class="input-edit"
+					[(ngModel)]="user.comments"
+				/>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="avatar">
+			<th mat-header-cell *matHeaderCellDef mat-sort-header>
+				<span>Avatar</span>
+			</th>
+			<td
+				mat-cell
+				*matCellDef="let user; index as i"
+				(dblclick)="editPicture(user.id, user)"
+			>
+				<div *ngIf="!i">
+					<input
+						type="text"
+						[(ngModel)]="newUser.avatar"
+						class="input-send"
+					/>
+					<mat-divider class="divider-edit"></mat-divider>
+				</div>
+				<img
+					*ngIf="user.show && i"
+					[src]="changeUrlPicture(user.avatar)"
+					alt="No picture"
+				/>
+				<img
+					*ngIf="user.show && !i"
+					class="img-row1"
+					[src]="changeUrlPicture(user.avatar)"
+					alt="No picture"
+				/>
+				<input
+					type="text"
+					*ngIf="!user.show"
+					class="input-edit"
+					[(ngModel)]="user.avatar"
+				/>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="action">
+			<th mat-header-cell *matHeaderCellDef mat-sort-header>
+				<span>Action</span>
+			</th>
+			<td mat-cell *matCellDef="let user; index as i">
+				<div *ngIf="!i" class="button-send">
+					<button
+						[disabled]="disableSend()"
+						(click)="saveUser()"
+						mat-flat-button
+						color="primary"
+						aria-label="Save user"
+					>
+						<mat-icon>send</mat-icon>
+					</button>
+					<mat-divider class="divider-send"></mat-divider>
+				</div>
+				<div class="button-edit">
+					<button
+						(click)="deleteUser(user.id)"
+						mat-flat-button
+						color="accent"
+						aria-label="Delete user"
+					>
+						<mat-icon>delete</mat-icon>
+					</button>
+					<button
+						[disabled]="user.show"
+						(click)="updateUser(user.id, user)"
+						mat-flat-button
+						color="primary"
+						aria-label="Update user"
+					>
+						<mat-icon>edit</mat-icon>
+					</button>
+				</div>
+				<input
+					type="text"
+					*ngIf="user.show"
+					readonly
+					class="input-no-edit"
+					[(ngModel)]="user.description"
+				/>
+				<input
+					type="text"
+					*ngIf="!user.show"
+					class="input-edit"
+					[(ngModel)]="user.description"
+				/>
+			</td>
+		</ng-container>
+
+		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+	</table>
+	<mat-paginator
+		[pageSizeOptions]="[5, 10, 50]"
+		showFirstLastButtons
+	></mat-paginator>
+</div>
