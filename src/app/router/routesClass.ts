@@ -7,6 +7,8 @@ import { FormsComponent } from '../components/content/forms/forms.component';
 import { StructureComponent } from '../components/content/structure/structure.component';
 import { UsersMaterialComponent } from '../components/content/users-material/users-material.component';
 import { UsersComponent } from '../components/content/users/users.component';
+import { PanelComponent } from '../custmodule/components/panel/panel.component';
+import { FamiliaComponent } from '../mimodulo2/componentes/familia/familia.component';
 
 export class RoutesClass {
 	private routes: Routes = [
@@ -19,6 +21,8 @@ export class RoutesClass {
 		{ path: 'structure', component: StructureComponent },
 		{ path: 'users', component: UsersComponent },
 		{ path: 'users-material', component: UsersMaterialComponent },
+		{ path: 'custmodule', component: PanelComponent },
+		{ path: 'family', component: FamiliaComponent },
 		{ path: '**', redirectTo: 'binding' },
 	];
 

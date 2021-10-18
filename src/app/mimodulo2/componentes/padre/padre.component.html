@@ -1,0 +1,31 @@
+<div class="container">
+	<h2>PADRE</h2>
+
+	<div class="row">
+		<input type="text" [(ngModel)]="mensajeAux" />
+		<button (click)="hablar(mensajeAux)">Hablar</button>
+	</div>
+	<div class="row">
+		<div class="column">
+			<p>Mensaje del hijo : {{ mensajeDelHijo }}</p>
+		</div>
+		<div class="column">
+			<p>Mensaje de la hija : {{ mensajeDelaHija }}</p>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="column">
+			<app-hijo
+				[mensaje]="mensajeDelPadre"
+				(contestar)="escucharHijo($event)"
+			></app-hijo>
+		</div>
+		<div class="column">
+			<app-hija
+				[mensaje]="mensajeDelPadre"
+				(contestar)="escucharHija($event)"
+			></app-hija>
+		</div>
+	</div>
+</div>

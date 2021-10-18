@@ -72,6 +72,8 @@ import { UsersMaterialComponent } from './components/content/users-material/user
 import { AddsymbolPipe } from './pipes/addsymbol.pipe';
 import { RouterModule } from '@angular/router';
 import { RoutesClass } from './router/routesClass';
+import { CustmoduleModule } from './custmodule/custmodule.module';
+import { MimoduloModule2 } from './mimodulo2/mimodulo2.module';
 
 @NgModule({
 	declarations: [
@@ -97,6 +99,9 @@ import { RoutesClass } from './router/routesClass';
 		HttpClientModule,
 		BrowserAnimationsModule,
 		RouterModule.forRoot(new RoutesClass().get(), { enableTracing: false }),
+
+		CustmoduleModule,
+		MimoduloModule2,
 
 		A11yModule,
 		ClipboardModule,

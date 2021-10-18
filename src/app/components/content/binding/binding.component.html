@@ -1,31 +1,39 @@
 <div class="container">
-  <h1>Binding</h1>
-  <div class="row">
-    <div class="column">
-      <h2>Data Interpolation</h2>
-      <label for="interpolation"> Name:{{ interpolationTest }} </label>
-    </div>
-    <div class="column">
-      <h2>Data Binding</h2>
-      <button class="button" name="binding" (click)="counter = counter + 1">
-        {{ counter }}
-      </button>
-    </div>
-  </div>
+	<h1>Binding ({{ counterInit }})</h1>
+	<div class="row">
+		<div class="column">
+			<h2>Data Interpolation</h2>
+			<label for="interpolation"> Name:{{ interpolationTest }} </label>
+		</div>
+		<div class="column">
+			<h2>Data Binding</h2>
+			<button
+				class="button"
+				name="binding"
+				(click)="counter = counter + 1"
+			>
+				{{ counter }}
+			</button>
+		</div>
+	</div>
 
-  <div class="row"></div>
+	<div class="row"></div>
 
-  <div class="row">
-    <div class="column">
-      <h2>Double Data Binding - Manual</h2>
-      <input type="text" [value]="doubleData" (input)="modifyDouble($event)" />
-      {{ doubleData }}
-    </div>
+	<div class="row">
+		<div class="column">
+			<h2>Double Data Binding - Manual</h2>
+			<input
+				type="text"
+				[value]="doubleData"
+				(input)="modifyDouble($event)"
+			/>
+			{{ doubleData }}
+		</div>
 
-    <div class="column">
-      <h2>Double Data Binding - Automatic</h2>
-      <input type="text" [(ngModel)]="doubleDataAut" />
-      {{ doubleDataAut }}
-    </div>
-  </div>
+		<div class="column">
+			<h2>Double Data Binding - Automatic</h2>
+			<input type="text" [(ngModel)]="doubleDataAut" />
+			{{ doubleDataAut }}
+		</div>
+	</div>
 </div>
