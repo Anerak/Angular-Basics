@@ -1,4 +1,4 @@
-/* Normalize */
+/*
 html {
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%;
@@ -178,8 +178,6 @@ template {
 [hidden] {
 	display: none;
 }
-
-/* Milligram CSS */
 
 *,
 *:after,
@@ -819,7 +817,7 @@ img {
 	float: right;
 }
 
-/* You can add global styles to this file, and also import other style files */
+*/
 :root {
 	background-color: #1c1d26;
 	color: #d1cdcd;
@@ -849,4 +847,4 @@ body {
 	font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
