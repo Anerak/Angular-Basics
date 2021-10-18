@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CustomersService } from 'src/app/services/customers.service';
 
 @Component({
@@ -7,10 +8,18 @@ import { CustomersService } from 'src/app/services/customers.service';
 	styleUrls: ['./customers.component.css'],
 })
 export class CustomersComponent implements OnInit {
+	id!: String;
 	customers: Array<String> = [];
 	customer: String = '';
 
-	constructor(private customersService: CustomersService) {}
+	constructor(
+		private customersService: CustomersService,
+		activatedRoute: ActivatedRoute
+	) {
+		activatedRoute.params.subscribe((params) => {
+			this.id = params['id'];
+		});
+	}
 
 	ngOnInit(): void {
 		this.customers = this.customersService.getCustomers();

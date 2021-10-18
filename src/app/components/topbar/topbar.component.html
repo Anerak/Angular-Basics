@@ -1,12 +1,51 @@
 <nav mat-tab-nav-bar>
 	<span>{{ title }}</span>
-	<a mat-tab-link routerLink="/attributes" label="Attributes">Attributes</a>
-	<a mat-tab-link routerLink="/binding" label="Binding">Binding</a>
-	<a mat-tab-link routerLink="/customers" label="Customers">Customers</a>
-	<a mat-tab-link routerLink="/forms" label="Forms">Forms</a>
-	<a mat-tab-link routerLink="/structure" label="Structure">Structure</a>
-	<a mat-tab-link routerLink="/users" label="Users">Users</a>
-	<a mat-tab-link routerLink="/users-material" label="Users-material"
+	<a
+		mat-tab-link
+		routerLinkActive="active"
+		routerLink="/attributes"
+		label="Attributes"
+		>Attributes</a
+	>
+	<a
+		mat-tab-link
+		routerLinkActive="active"
+		routerLink="/binding"
+		label="Binding"
+		>Binding</a
+	>
+	<a
+		mat-tab-link
+		routerLinkActive="active"
+		routerLink="/customers"
+		label="Customers"
+		>Customers</a
+	>
+	<a
+		mat-tab-link
+		routerLinkActive="active"
+		routerLink="/customers/123"
+		label="Customers"
+		>Customer 123</a
+	>
+	<a mat-tab-link routerLinkActive="active" routerLink="/forms" label="Forms"
+		>Forms</a
+	>
+	<a
+		mat-tab-link
+		routerLinkActive="active"
+		routerLink="/structure"
+		label="Structure"
+		>Structure</a
+	>
+	<a mat-tab-link routerLinkActive="active" routerLink="/users" label="Users"
+		>Users</a
+	>
+	<a
+		mat-tab-link
+		routerLinkActive="active"
+		routerLink="/users-material"
+		label="Users-material"
 		>Users-material</a
 	>
 </nav>

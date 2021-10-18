@@ -70,6 +70,8 @@ import { UsersComponent } from './components/content/users/users.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersMaterialComponent } from './components/content/users-material/users-material.component';
 import { AddsymbolPipe } from './pipes/addsymbol.pipe';
+import { RouterModule } from '@angular/router';
+import { RoutesClass } from './router/routesClass';
 
 @NgModule({
 	declarations: [
@@ -84,8 +86,8 @@ import { AddsymbolPipe } from './pipes/addsymbol.pipe';
 		FormsComponent,
 		CustomersComponent,
 		UsersComponent,
-  UsersMaterialComponent,
-  AddsymbolPipe,
+		UsersMaterialComponent,
+		AddsymbolPipe,
 	],
 	imports: [
 		BrowserModule,
@@ -94,6 +96,8 @@ import { AddsymbolPipe } from './pipes/addsymbol.pipe';
 		ReactiveFormsModule,
 		HttpClientModule,
 		BrowserAnimationsModule,
+		RouterModule.forRoot(new RoutesClass().get(), { enableTracing: false }),
+
 		A11yModule,
 		ClipboardModule,
 		CdkStepperModule,
